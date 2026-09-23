@@ -1,182 +1,285 @@
 /* Root smooth scroll */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background-color: #fff8f5;
+  color: #4b3b3b;
+}
+
+/* Section styling */
+.section {
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2c1e1e;
+}
+
+/* Hero section */
+.hero {
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, rgba(255, 248, 245, 0.6), rgba(255, 255, 255, 0.85)), url('../public/assets/dareenlifestylelogo1.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #2c1e1e;
+  padding: 20px;
+  max-width: 700px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hero-content h1 span {
+  color: #b4785f;
+  font-family: 'Playfair Display', serif;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+.hero-button {
+  padding: 14px 28px;
+  background-color: #2c1e1e;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.hero-button:hover {
+  background-color: #b4785f;
+  transform: scale(1.05);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+.fade-in.delay {
+  animation-delay: 0.3s;
+}
+
+.fade-in.delay-2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  body {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    background-color: #fff8f5;
-    color: #4b3b3b;
-  }
-  
-  /* Section styling */
-  .section {
-    padding: 60px 40px;
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  .section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #2c1e1e;
-  }
-  
-  /* Hero section */
-  .hero {
-    height: 100vh;
-    background-image: linear-gradient(to bottom right, rgba(255, 248, 245, 0.6), rgba(255, 255, 255, 0.85)), url('../public/assets/dareenlifestylelogo1.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .hero-overlay {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(4px);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .hero-content {
-    text-align: center;
-    color: #2c1e1e;
-    padding: 20px;
-    max-width: 700px;
-  }
-  
+}
+
+/* Responsive hero */
+@media (max-width: 768px) {
   .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: bold;
+    font-size: 2.2rem;
   }
-  
-  .hero-content h1 span {
-    color: #b4785f;
-    font-family: 'Playfair Display', serif;
-  }
-  
+
   .hero-content p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
+    font-size: 1rem;
   }
-  
+
   .hero-button {
-    padding: 14px 28px;
-    background-color: #2c1e1e;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    display: inline-block;
+    font-size: 0.95rem;
+    padding: 12px 24px;
   }
-  
-  .hero-button:hover {
-    background-color: #b4785f;
-    transform: scale(1.05);
+}
+
+/* Filter buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  padding: 8px 20px;
+  border: 1px solid #c0a192;
+  background: transparent;
+  color: #4b3b3b;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-buttons button:hover {
+  background: rgba(180, 120, 95, 0.1);
+}
+
+.filter-buttons button.is-active {
+  background: #2c1e1e;
+  border-color: #2c1e1e;
+  color: #fff;
+}
+
+/* Scroll gallery */
+.horizontal-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #c0a192 transparent;
+  scroll-behavior: smooth;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #c0a192;
+  border-radius: 4px;
+}
+
+/* Media cards — shared frame for photos and videos */
+.media-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(320px, 32vw, 460px);
+  height: clamp(240px, 24vw, 340px);
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #f0e4de;
+  border: 1px solid rgba(44, 30, 30, 0.08);
+  box-shadow: 0 6px 18px rgba(44, 30, 30, 0.1);
+  scroll-snap-align: start;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.media-card:hover {
+  box-shadow: 0 14px 30px rgba(44, 30, 30, 0.18);
+  transform: translateY(-4px);
+}
+
+.media-card img,
+.media-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Type badge, top-left corner */
+.media-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(44, 30, 30, 0.55);
+  backdrop-filter: blur(3px);
+  color: #fff8f5;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.4px;
+  pointer-events: none;
+}
+
+.badge-icon {
+  font-style: normal;
+  font-size: 0.65rem;
+}
+
+/* Video card specifics */
+.video-card {
+  cursor: pointer;
+}
+
+.video-card.is-active {
+  cursor: default;
+}
+
+.video-card video {
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.video-card.is-active video {
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+.video-card:not(.is-active):hover video {
+  transform: scale(1.04);
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 248, 245, 0.9);
+  color: #2c1e1e;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover .play-overlay {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+@media (max-width: 768px) {
+  .media-card {
+    width: 90vw;
+    height: 62vw;
   }
-  
-  /* Animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards;
-  }
-  
-  .fade-in.delay {
-    animation-delay: 0.3s;
-  }
-  
-  .fade-in.delay-2 {
-    animation-delay: 0.6s;
-  }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-  
-    .hero-content p {
-      font-size: 1rem;
-    }
-  
-    .hero-button {
-      font-size: 0.95rem;
-      padding: 12px 24px;
-    }
-  }
-  
-  
-  /* Scroll gallery */
-  .horizontal-scroll {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 10px 0;
-    scroll-snap-type: x mandatory;
-    scrollbar-color: #c0a192 transparent;
-    scroll-behavior: smooth;
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar-thumb {
-    background: #c0a192;
-    border-radius: 4px;
-  }
-  
-  .horizontal-scroll img,
-  .horizontal-scroll video {
-    flex: 0 0 auto;
-    width: 280px;
-    height: auto;
-    border-radius: 12px;
-    scroll-snap-align: start;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .horizontal-scroll img:hover,
-  .horizontal-scroll video:hover {
-    transform: scale(1.03);
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-  
-    .hero p {
-      font-size: 1rem;
-    }
-  
-    .horizontal-scroll img,
-    .horizontal-scroll video {
-      width: 80vw;
-    }
-  
-    .section {
-      padding: 40px 20px;
-    }
-  }
-  
+}
