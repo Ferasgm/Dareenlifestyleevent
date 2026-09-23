@@ -168,6 +168,7 @@ function GallerySection({ id, title, images = [], videos = [] }) {
                 <i className="badge-icon">&#9654;</i> Video
               </span>
               <video
+                className="bg-video"
                 ref={(el) => (videoRefs.current[index] = el)}
                 controls={isActive}
                 autoPlay={isActive}
@@ -184,7 +185,7 @@ function GallerySection({ id, title, images = [], videos = [] }) {
                   }
                 }}
               >
-                <source src={`${process.env.PUBLIC_URL}/videos/${vid}`} type="video/mp4" />
+                <source src={`${process.env.PUBLIC_URL}/videos/${vid}`}  type="video/mp4" />
               </video>
               {!isActive && <span className="play-overlay">&#9654;</span>}
             </div>

@@ -177,8 +177,8 @@ body {
 .media-card {
   position: relative;
   flex: 0 0 auto;
-  width: clamp(320px, 32vw, 460px);
-  height: clamp(240px, 24vw, 340px);
+  height: clamp(380px, 40vw, 600px);  /* same height for all cards */
+  width: auto;                         /* width follows the media's shape */
   border-radius: 14px;
   overflow: hidden;
   background-color: #f0e4de;
@@ -188,6 +188,8 @@ body {
   transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
+
+
 .media-card:hover {
   box-shadow: 0 14px 30px rgba(44, 30, 30, 0.18);
   transform: translateY(-4px);
@@ -195,12 +197,15 @@ body {
 
 .media-card img,
 .media-card video {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
+  width: auto;        /* keeps the original shape */
+  max-width: none;
+  object-fit: contain;  /* nothing is cut, because the card matches the media */
   display: block;
+  
   transition: transform 0.5s ease, filter 0.3s ease;
 }
+
 
 .photo-card:hover img {
   transform: scale(1.06);
@@ -279,7 +284,10 @@ body {
 
 @media (max-width: 768px) {
   .media-card {
-    width: 90vw;
-    height: 62vw;
+    height: 90vw;
+    width: auto;
   }
 }
+
+
+
