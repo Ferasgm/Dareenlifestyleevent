@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
+  const { hash } = useLocation();
+
+  // Coming from a footer link like "/#corporate": scroll to that section
+  useEffect(() => {
+    if (!hash) return undefined;
+    const timer = setTimeout(() => {
+      const section = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [hash]);
+
   return (
-    <div>
+    <div id="top">
       <section className="hero">
         <div className="hero-overlay">
           <div className="hero-content">
@@ -167,8 +180,24 @@ function GallerySection({ id, title, images = [], videos = [] }) {
               <span className="media-badge">
                 <i className="badge-icon">&#9654;</i> Video
               </span>
+
+              {/* Blurred copy behind the main video */}
               <video
                 className="bg-video"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                autoPlay={isActive}
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <source src={`${process.env.PUBLIC_URL}/videos/${vid}#t=0.1`} type="video/mp4" />
+              </video>
+
+              {/* Main video */}
+              <video
+                className="main-video"
                 ref={(el) => (videoRefs.current[index] = el)}
                 controls={isActive}
                 autoPlay={isActive}
@@ -185,7 +214,7 @@ function GallerySection({ id, title, images = [], videos = [] }) {
                   }
                 }}
               >
-                <source src={`${process.env.PUBLIC_URL}/videos/${vid}`}  type="video/mp4" />
+                <source src={`${process.env.PUBLIC_URL}/videos/${vid}`} type="video/mp4" />
               </video>
               {!isActive && <span className="play-overlay">&#9654;</span>}
             </div>

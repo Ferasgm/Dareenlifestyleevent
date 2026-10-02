@@ -15,6 +15,7 @@ body {
   padding: 60px 40px;
   text-align: center;
   background-color: #fff;
+  scroll-margin-top: calc(var(--header-h, 120px) + 10px); /* stops below the header */
 }
 
 .section h2 {
@@ -25,7 +26,8 @@ body {
 
 /* Hero section */
 .hero {
-  height: 100vh;
+  height: calc(100vh - var(--header-h, 0px)); /* fills the screen below the header */
+  min-height: 420px;
   background-image: linear-gradient(to bottom right, rgba(255, 248, 245, 0.6), rgba(255, 255, 255, 0.85)), url('../public/assets/dareenlifestylelogo1.png');
   background-size: cover;
   background-position: center;
@@ -188,8 +190,6 @@ body {
   transition: box-shadow 0.35s ease, transform 0.35s ease;
 }
 
-
-
 .media-card:hover {
   box-shadow: 0 14px 30px rgba(44, 30, 30, 0.18);
   transform: translateY(-4px);
@@ -202,10 +202,8 @@ body {
   max-width: none;
   object-fit: contain;  /* nothing is cut, because the card matches the media */
   display: block;
-  
   transition: transform 0.5s ease, filter 0.3s ease;
 }
-
 
 .photo-card:hover img {
   transform: scale(1.06);
@@ -289,5 +287,28 @@ body {
   }
 }
 
+/* ===== Blurred sides for videos ===== */
 
+.media-card.video-card .bg-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  filter: blur(25px) brightness(0.85);
+  transform: scale(1.2);
+  pointer-events: none;
+}
 
+.media-card.video-card .main-video {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* Keep the play button above the video */
+.video-card .play-overlay {
+  z-index: 2;
+}
